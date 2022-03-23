@@ -103,7 +103,7 @@ def world():
             if tile == 1: #Para dibujar los puntos que come pacman
                 path.up()
                 path.goto(x + 10, y + 10)
-                path.dot(2, 'white')
+                path.dot(2, 'yellow')
 
 
 def move():
