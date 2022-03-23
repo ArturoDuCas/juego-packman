@@ -12,19 +12,19 @@ from turtle import *
 
 from freegames import floor, vector
 
-state = {'score': 0}
+state = {'score': 0} #Empieza el contador en 0
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
-aim = vector(5, 0)
-pacman = vector(-40, -80)
+aim = vector(5, 0) #Movimiento inicial Pacman (no se bien?)
+pacman = vector(-40, -80) #Posicion inicial Pacman
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
+    [vector(-180, 160), vector(5, 0)], #Posicion Inicial de Fantasmas y Movimiento Inicial
     [vector(-180, -160), vector(0, 5)],
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
 # fmt: off
-tiles = [
+tiles = [ #Tiles del mapa (0 no avanza) (1 puede avanzar)
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
@@ -49,7 +49,7 @@ tiles = [
 # fmt: on
 
 
-def square(x, y):
+def square(x, y): #Funcion para dibujar cuadrados del mapa #Se repite por el numero de 0 en el arreglo
     """Draw square using path at (x, y)."""
     path.up()
     path.goto(x, y)
@@ -57,7 +57,7 @@ def square(x, y):
     path.begin_fill()
 
     for count in range(4):
-        path.forward(20)
+        path.forward(20) #Tamaño de cuadrado
         path.left(90)
 
     path.end_fill()
@@ -133,10 +133,10 @@ def move():
             point.move(course)
         else:
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(10, 0), #Velocidad de los fantasmas ahora es el doble
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
             ]
             plan = choice(options)
             course.x = plan.x
