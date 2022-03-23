@@ -88,18 +88,19 @@ def valid(point):
 
 def world():
     """Draw world using path."""
-    bgcolor('pink')
-    path.color('purple')
+    bgcolor('pink') #Background color
+    path.color('purple') #Color de losas
 
-    for index in range(len(tiles)):
+    for index in range(len(tiles)): #Ciclo para hacer las losas
         tile = tiles[index]
-
-        if tile > 0:
+        #1 es donde pacman puede pasar
+        #0 son las barreras
+        if tile > 0: #Dibuja los tiles que sean 1 
             x = (index % 20) * 20 - 200
             y = 180 - (index // 20) * 20
             square(x, y)
 
-            if tile == 1:
+            if tile == 1: #Para dibujar los puntos que come pacman
                 path.up()
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
