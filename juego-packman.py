@@ -12,19 +12,19 @@ from turtle import *
 
 from freegames import floor, vector
 
-state = {'score': 0}
+state = {'score': 0} #Empieza el contador en 0
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
-aim = vector(5, 0)
-pacman = vector(-40, -80)
+aim = vector(5, 0) #Movimiento inicial Pacman (no se bien?)
+pacman = vector(-40, -80) #Posicion inicial Pacman
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(10, 0)], #Posicion Inicial de Fantasmas y Movimiento Inicial
+    [vector(-180, -160), vector(0, 10)],
+    [vector(100, 160), vector(0, -10)],
+    [vector(100, -160), vector(-10, 0)],
 ]
 # fmt: off
-tiles = [
+tiles = [ #Tiles del mapa (0 no avanza) (1 puede avanzar)
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
@@ -49,7 +49,7 @@ tiles = [
 # fmt: on
 
 
-def square(x, y):
+def square(x, y): #Funcion para dibujar cuadrados del mapa #Se repite por el numero de 0 en el arreglo
     """Draw square using path at (x, y)."""
     path.up()
     path.goto(x, y)
@@ -57,7 +57,7 @@ def square(x, y):
     path.begin_fill()
 
     for count in range(4):
-        path.forward(20)
+        path.forward(20) #Tamaño de cuadrado
         path.left(90)
 
     path.end_fill()
@@ -88,18 +88,19 @@ def valid(point):
 
 def world():
     """Draw world using path."""
-    bgcolor('black')
-    path.color('blue')
+    bgcolor('pink') #Background color
+    path.color('purple') #Color de losas
 
-    for index in range(len(tiles)):
+    for index in range(len(tiles)): #Ciclo para hacer las losas
         tile = tiles[index]
-
-        if tile > 0:
+        #1 es donde pacman puede pasar
+        #0 son las barreras
+        if tile > 0: #Dibuja los tiles que sean 1 
             x = (index % 20) * 20 - 200
             y = 180 - (index // 20) * 20
             square(x, y)
 
-            if tile == 1:
+            if tile == 1: #Para dibujar los puntos que come pacman
                 path.up()
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
@@ -132,11 +133,27 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
+            """
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(10, 0), #Velocidad de los fantasmas ahora es el doble
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
+            ]"""
+            testx = 0
+            testy = 0
+            if (pacman.x > course.x): #compara posicion de Pacman con fantasma
+                testx = vector(10,0) #escoge moverse hacia pacman dependiendo de su posicion
+            else:
+                testx = vector(-10,0)
+            if (pacman.y > course.y): #compara posicion de Pacman con fantasma
+                testy = vector(0,10) #escoge moverse hacia pacman dependiendo de su posicion
+            else:
+                testy = vector(0,-10)
+
+            options = [
+                testx, #opciones para escoger al azar movimiento en x o y
+                testy
             ]
             plan = choice(options)
             course.x = plan.x
@@ -144,7 +161,7 @@ def move():
 
         up()
         goto(point.x + 10, point.y + 10)
-        dot(20, 'red')
+        dot(20, 'black')
 
     update()
 
