@@ -88,8 +88,8 @@ def valid(point):
 
 def world():
     """Draw world using path."""
-    bgcolor('black')
-    path.color('blue')
+    bgcolor('pink')
+    path.color('purple')
 
     for index in range(len(tiles)):
         tile = tiles[index]
@@ -144,7 +144,7 @@ def move():
 
         up()
         goto(point.x + 10, point.y + 10)
-        dot(20, 'red')
+        dot(20, 'black')
 
     update()
 
