@@ -139,8 +139,6 @@ def move():
                 vector(-10, 0),
                 vector(0, 10),
                 vector(0, -10),
-<<<<<<< HEAD
-=======
             ]"""
             testx = 0
             testy = 0
@@ -156,7 +154,6 @@ def move():
             options = [
                 testx, #opciones para escoger al azar movimiento en x o y
                 testy
->>>>>>> fantasmas-listos
             ]
             plan = choice(options)
             course.x = plan.x
