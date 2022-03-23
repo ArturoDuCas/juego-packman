@@ -18,10 +18,10 @@ writer = Turtle(visible=False)
 aim = vector(5, 0) #Movimiento inicial Pacman (no se bien?)
 pacman = vector(-40, -80) #Posicion inicial Pacman
 ghosts = [
-    [vector(-180, 160), vector(5, 0)], #Posicion Inicial de Fantasmas y Movimiento Inicial
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(10, 0)], #Posicion Inicial de Fantasmas y Movimiento Inicial
+    [vector(-180, -160), vector(0, 10)],
+    [vector(100, 160), vector(0, -10)],
+    [vector(100, -160), vector(-10, 0)],
 ]
 # fmt: off
 tiles = [ #Tiles del mapa (0 no avanza) (1 puede avanzar)
