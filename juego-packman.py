@@ -133,11 +133,30 @@ def move():
         if valid(point + course):
             point.move(course)
         else:
+            """
             options = [
                 vector(10, 0), #Velocidad de los fantasmas ahora es el doble
                 vector(-10, 0),
                 vector(0, 10),
                 vector(0, -10),
+<<<<<<< HEAD
+=======
+            ]"""
+            testx = 0
+            testy = 0
+            if (pacman.x > course.x): #compara posicion de Pacman con fantasma
+                testx = vector(10,0) #escoge moverse hacia pacman dependiendo de su posicion
+            else:
+                testx = vector(-10,0)
+            if (pacman.y > course.y): #compara posicion de Pacman con fantasma
+                testy = vector(0,10) #escoge moverse hacia pacman dependiendo de su posicion
+            else:
+                testy = vector(0,-10)
+
+            options = [
+                testx, #opciones para escoger al azar movimiento en x o y
+                testy
+>>>>>>> fantasmas-listos
             ]
             plan = choice(options)
             course.x = plan.x
